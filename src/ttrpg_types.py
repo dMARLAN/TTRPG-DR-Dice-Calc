@@ -91,6 +91,6 @@ class Attack:
         return (
             f"{Color.RED}"
             f"Attack: 1{self.die}+{self.bonus}"
-            f" | Critical Threat Range: {self.critical_threat_range}-20"
+            f" | Critical Threat Range: {self.critical_threat_range}{"-20" if self.critical_threat_range != 20 else ""}"
             f"{Color.RESET}"
         )
