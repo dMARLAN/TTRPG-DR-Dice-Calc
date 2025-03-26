@@ -16,7 +16,7 @@ def __run_simulation(attack: Attack, damage: Damage, defense: Defense, rounds: i
 
 
 def __main() -> None:
-    bonus: int = 5
+    bonus: int = 4
     armor_class: int = 15
     damage_reduction: int = 10
 

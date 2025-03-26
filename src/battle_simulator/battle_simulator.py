@@ -21,8 +21,14 @@ class BattleSimulator:
         misses = 0
 
         for _ in range(self.__rounds):
-            if self.__attack.roll() >= self.__defense.armor_class:
-                damage_dealt += max((self.__damage.roll() - self.__defense.damage_reduction), 0)
+            attack = self.__attack.roll()
+
+            if attack.result >= self.__defense.armor_class or attack.is_nat_20():
+                damage = self.__damage.roll()
+                if attack.is_nat_20():
+                    damage *= 2
+
+                damage_dealt += max((damage - self.__defense.damage_reduction), 0)
                 hits += 1
             else:
                 misses += 1

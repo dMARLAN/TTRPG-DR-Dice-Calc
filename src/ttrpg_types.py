@@ -41,6 +41,19 @@ class Damage:
 
 
 @dataclass(frozen=True)
+class AttackResult:
+    roll: int
+    bonus: int
+
+    @property
+    def result(self):
+        return self.roll + self.bonus
+
+    def is_nat_20(self):
+        return self.roll == 20
+
+
+@dataclass(frozen=True)
 class Attack:
     bonus: int
 
@@ -49,8 +62,8 @@ class Attack:
     def __post_init__(self):
         object.__setattr__(self, 'die', Die(20))
 
-    def roll(self):
-        return self.die.roll() + self.bonus
+    def roll(self) -> AttackResult:
+        return AttackResult(roll=self.die.roll(), bonus=self.bonus)
 
     def __str__(self):
         return f"Attack: 1{self.die}+{self.bonus}"
