@@ -16,11 +16,13 @@ def __run_simulation(attack: Attack, damage: Damage, defense: Defense, rounds: i
 
 
 def __main() -> None:
-    bonus: int = 4
-    armor_class: int = 15
+    bonus: int = 5
+
+    # Gargoyle: https://www.d20pfsrd.com/bestiary/monster-listings/monstrous-humanoids/gargoyle/
+    armor_class: int = 16
     damage_reduction: int = 10
 
-    print("Great Sword")
+    # Great Sword
     __run_simulation(
         attack=Attack(bonus=bonus, critical_threat_range=19),
         damage=Damage(num_die=2, die_sides=6, bonus=bonus, critical_multiplier=2),
@@ -30,7 +32,7 @@ def __main() -> None:
 
     print()
 
-    print("Great Axe")
+    # Great Axe
     __run_simulation(
         attack=Attack(bonus=bonus, critical_threat_range=20),
         damage=Damage(num_die=1, die_sides=12, bonus=bonus, critical_multiplier=3),
