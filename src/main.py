@@ -18,11 +18,12 @@ def __run_simulation(attack: Attack, damage: Damage, defense: Defense, rounds: i
 def __main() -> None:
     bonus: int = 4
     armor_class: int = 15
-    damage_reduction: int = 10
+    damage_reduction: int = 0
 
     __run_simulation(
-        attack=Attack(bonus=bonus),
-        damage=Damage(num_die=3, die_sides=4, bonus=bonus),
+        # Great Sword
+        attack=Attack(bonus=bonus, critical_threat_range=19),
+        damage=Damage(num_die=2, die_sides=6, bonus=bonus, critical_multiplier=2),
         defense=Defense(armor_class=armor_class, damage_reduction=damage_reduction),
         rounds=1_000_000
     )
@@ -30,8 +31,9 @@ def __main() -> None:
     print()
 
     __run_simulation(
-        attack=Attack(bonus=bonus),
-        damage=Damage(num_die=1, die_sides=12, bonus=bonus),
+        # Great Axe
+        attack=Attack(bonus=bonus, critical_threat_range=20),
+        damage=Damage(num_die=1, die_sides=12, bonus=bonus, critical_multiplier=3),
         defense=Defense(armor_class=armor_class, damage_reduction=damage_reduction),
         rounds=1_000_000
     )

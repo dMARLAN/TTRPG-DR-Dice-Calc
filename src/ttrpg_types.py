@@ -27,6 +27,7 @@ class Damage:
     die_sides: int
     num_die: int
     bonus: int
+    critical_multiplier: int = 2
 
     die: Die = field(init=False)
 
@@ -44,6 +45,7 @@ class Damage:
 class AttackResult:
     roll: int
     bonus: int
+    critical_threat_range: int = 20
 
     @property
     def result(self):
@@ -52,10 +54,14 @@ class AttackResult:
     def is_nat_20(self):
         return self.roll == 20
 
+    def is_critical_threat(self):
+        return self.roll >= self.critical_threat_range
+
 
 @dataclass(frozen=True)
 class Attack:
     bonus: int
+    critical_threat_range: int = 20
 
     die: Die = field(init=False)
 
@@ -63,7 +69,11 @@ class Attack:
         object.__setattr__(self, 'die', Die(20))
 
     def roll(self) -> AttackResult:
-        return AttackResult(roll=self.die.roll(), bonus=self.bonus)
+        return AttackResult(
+            roll=self.die.roll(),
+            bonus=self.bonus,
+            critical_threat_range=self.critical_threat_range,
+        )
 
     def __str__(self):
         return f"Attack: 1{self.die}+{self.bonus}"

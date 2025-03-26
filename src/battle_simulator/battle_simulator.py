@@ -1,5 +1,5 @@
 from battle_simulator.types import BattleSimulatorResult
-from ttrpg_types import Attack, Damage, Defense
+from ttrpg_types import Attack, Damage, Defense, AttackResult
 
 
 class BattleSimulator:
@@ -15,6 +15,13 @@ class BattleSimulator:
         self.__defense = defense
         self.__rounds = rounds
 
+    def __is_critical_hit(self, attack: AttackResult) -> bool:
+        if attack.is_critical_threat():
+            confirm_attack = self.__attack.roll()
+            if confirm_attack.result >= self.__defense.armor_class or confirm_attack.is_nat_20():
+                return True
+        return False
+
     def run(self) -> BattleSimulatorResult:
         damage_dealt = 0
         hits = 0
@@ -24,9 +31,10 @@ class BattleSimulator:
             attack = self.__attack.roll()
 
             if attack.result >= self.__defense.armor_class or attack.is_nat_20():
-                damage = self.__damage.roll()
-                if attack.is_nat_20():
-                    damage *= 2
+                if self.__is_critical_hit(attack):
+                    damage = sum(self.__damage.roll() for _ in range(self.__damage.critical_multiplier))
+                else:
+                    damage = self.__damage.roll()
 
                 damage_dealt += max((damage - self.__defense.damage_reduction), 0)
                 hits += 1
