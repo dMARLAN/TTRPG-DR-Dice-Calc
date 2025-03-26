@@ -16,7 +16,7 @@ def __run_simulation(attack: Attack, damage: Damage, defense: Defense, rounds: i
     print(result)
 
 
-def main() -> None:
+def __main() -> None:
     bonus: int = 5
     armor_class: int = 15
     damage_reduction: int = 10
@@ -39,4 +39,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    __main()
