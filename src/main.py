@@ -22,7 +22,6 @@ def __main() -> None:
 
     print("Great Sword")
     __run_simulation(
-        # Great Sword
         attack=Attack(bonus=bonus, critical_threat_range=19),
         damage=Damage(num_die=2, die_sides=6, bonus=bonus, critical_multiplier=2),
         defense=Defense(armor_class=armor_class, damage_reduction=damage_reduction),
@@ -33,7 +32,6 @@ def __main() -> None:
 
     print("Great Axe")
     __run_simulation(
-        # Great Axe
         attack=Attack(bonus=bonus, critical_threat_range=20),
         damage=Damage(num_die=1, die_sides=12, bonus=bonus, critical_multiplier=3),
         defense=Defense(armor_class=armor_class, damage_reduction=damage_reduction),
