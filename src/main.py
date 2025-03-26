@@ -10,8 +10,7 @@ def __run_simulation(attack: Attack, damage: Damage, defense: Defense, rounds: i
         rounds=rounds,
     ).run()
 
-    print(attack)
-    print(damage)
+    print(attack, "|", damage)
     print(defense)
     print(result)
 

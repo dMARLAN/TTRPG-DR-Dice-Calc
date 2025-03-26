@@ -19,7 +19,7 @@ class Defense:
     damage_reduction: int
 
     def __str__(self):
-        return f"Armor Class: {self.armor_class}, Damage Reduction: {self.damage_reduction}"
+        return f"Armor Class: {self.armor_class} | Damage Reduction: {self.damage_reduction}"
 
 
 @dataclass(frozen=True)

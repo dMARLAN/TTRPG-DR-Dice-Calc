@@ -8,4 +8,4 @@ class BattleSimulatorResult:
     damage_dealt: int
 
     def __str__(self):
-        return f"Hits: {self.hits}, Misses: {self.misses}, Damage Dealt: {self.damage_dealt}"
+        return f"Hits: {self.hits} | Misses: {self.misses} | Damage Dealt: {self.damage_dealt}"
