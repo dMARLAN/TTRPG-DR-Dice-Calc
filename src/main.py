@@ -10,9 +10,11 @@ def __run_simulation(attack: Attack, damage: Damage, defense: Defense, rounds: i
         rounds=rounds,
     ).run()
 
-    print(attack, "|", damage)
-    print(defense)
-    print(result)
+    print(
+        f"{attack} | {damage}\n"
+        f"{defense}\n"
+        f"{result}\n"
+    )
 
 
 def __main() -> None:
@@ -29,8 +31,6 @@ def __main() -> None:
         defense=Defense(armor_class=armor_class, damage_reduction=damage_reduction),
         rounds=1_000_000
     )
-
-    print()
 
     # Great Axe
     __run_simulation(

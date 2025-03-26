@@ -1,5 +1,7 @@
 from dataclasses import dataclass
 
+from color import Color
+
 
 @dataclass(frozen=True)
 class BattleSimulatorResult:
@@ -8,4 +10,10 @@ class BattleSimulatorResult:
     damage_dealt: int
 
     def __str__(self):
-        return f"Hits: {self.hits} | Misses: {self.misses} | Damage Dealt: {self.damage_dealt}"
+        return (
+            f"{Color.YELLOW}"
+            f"Hits: {self.hits:,} "
+            f"| Misses: {self.misses:,} "
+            f"| Damage Dealt: {self.damage_dealt:,}"
+            f"{Color.RESET}"
+        )

@@ -1,6 +1,8 @@
 from dataclasses import dataclass, field
 import random
 
+from color import Color
+
 
 @dataclass(frozen=True)
 class Die:
@@ -19,7 +21,12 @@ class Defense:
     damage_reduction: int
 
     def __str__(self):
-        return f"Armor Class: {self.armor_class} | Damage Reduction: {self.damage_reduction}"
+        return (
+            f"{Color.GREEN}"
+            f"Armor Class: {self.armor_class} "
+            f"| Damage Reduction: {self.damage_reduction}"
+            f"{Color.RESET}"
+        )
 
 
 @dataclass(frozen=True)
@@ -38,7 +45,12 @@ class Damage:
         return sum(self.die.roll() for _ in range(self.num_die)) + self.bonus
 
     def __str__(self):
-        return f"Damage: {self.num_die}d{self.die_sides}+{self.bonus}"
+        return (
+            f"{Color.BLUE}"
+            f"Damage: {self.num_die}d{self.die_sides}+{self.bonus}"
+            f" | Critical Multiplier: x{self.critical_multiplier}"
+            f"{Color.RESET}"
+        )
 
 
 @dataclass(frozen=True)
@@ -76,4 +88,9 @@ class Attack:
         )
 
     def __str__(self):
-        return f"Attack: 1{self.die}+{self.bonus}"
+        return (
+            f"{Color.RED}"
+            f"Attack: 1{self.die}+{self.bonus}"
+            f" | Critical Threat Range: {self.critical_threat_range}-20"
+            f"{Color.RESET}"
+        )
