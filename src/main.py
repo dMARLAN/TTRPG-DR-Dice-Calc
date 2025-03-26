@@ -10,9 +10,9 @@ def __run_simulation(attack: Attack, damage: Damage, defense: Defense, rounds: i
         rounds=rounds,
     ).run()
 
-    print(f"Attack: {attack}")
-    print(f"Damage: {damage}")
-    print(f"Defense: {defense}")
+    print(attack)
+    print(damage)
+    print(defense)
     print(result)
 
 
